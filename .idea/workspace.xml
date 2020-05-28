@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6d818c04-7016-4e15-a881-ee0e67ba7466" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="db" type="feb32156:DbDataSourceImpl" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1VWuGbwKdac40XhIZIrsOnkN892" />
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../scrapepp" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.views">
+    <configuration name="views" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="blogscraper" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name=" DJANGO_SETTINGS_MODULE" value="(untitled7).settings" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/news" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/news/views.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="untitled7" type="Python.DjangoServer" factoryName="Django server">
+      <module name="blogscraper" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="untitled7.settings" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Django server.untitled7" />
+      <item itemvalue="Python.views" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.views" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6d818c04-7016-4e15-a881-ee0e67ba7466" name="Default Changelist" comment="" />
+      <created>1577381077616</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1577381077616</updated>
+      <workItem from="1577381271713" duration="7320000" />
+      <workItem from="1577425908537" duration="3946000" />
+      <workItem from="1577530852482" duration="4618000" />
+      <workItem from="1577555553728" duration="614000" />
+      <workItem from="1577735385755" duration="5811000" />
+      <workItem from="1577769704114" duration="2759000" />
+      <workItem from="1577860462651" duration="2233000" />
+      <workItem from="1577899393038" duration="1276000" />
+      <workItem from="1577993198492" duration="11855000" />
+      <workItem from="1578029600584" duration="7072000" />
+      <workItem from="1578039908838" duration="3435000" />
+      <workItem from="1578052332671" duration="2738000" />
+      <workItem from="1578073673133" duration="2899000" />
+      <workItem from="1578134468111" duration="9000000" />
+      <workItem from="1578158023198" duration="16510000" />
+      <workItem from="1578244246699" duration="6715000" />
+      <workItem from="1578257757830" duration="6507000" />
+      <workItem from="1578288371365" duration="12684000" />
+      <workItem from="1578342510220" duration="508000" />
+      <workItem from="1578383540607" duration="1149000" />
+      <workItem from="1578413798112" duration="4170000" />
+      <workItem from="1578577515778" duration="595000" />
+      <workItem from="1578691980351" duration="2041000" />
+      <workItem from="1578723599822" duration="1610000" />
+      <workItem from="1579295364981" duration="1306000" />
+      <workItem from="1579678166137" duration="227000" />
+      <workItem from="1579773676131" duration="2267000" />
+      <workItem from="1579985196647" duration="2838000" />
+      <workItem from="1580016320699" duration="1290000" />
+      <workItem from="1580063574036" duration="7355000" />
+      <workItem from="1580138424303" duration="10350000" />
+      <workItem from="1580423727553" duration="790000" />
+      <workItem from="1580902037452" duration="1836000" />
+      <workItem from="1581665903628" duration="723000" />
+      <workItem from="1582974822044" duration="1172000" />
+      <workItem from="1582991633338" duration="599000" />
+      <workItem from="1582996465152" duration="110000" />
+      <workItem from="1583086148785" duration="775000" />
+      <workItem from="1583327267996" duration="527000" />
+      <workItem from="1584698652879" duration="1460000" />
+      <workItem from="1584779486877" duration="79000" />
+      <workItem from="1584833850870" duration="577000" />
+      <workItem from="1584862680016" duration="598000" />
+      <workItem from="1584900324970" duration="10172000" />
+      <workItem from="1585257897428" duration="2379000" />
+      <workItem from="1585261919187" duration="1006000" />
+      <workItem from="1585291317048" duration="1151000" />
+      <workItem from="1587921817448" duration="1427000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/untitled7$views.coverage" NAME="views Coverage Results" MODIFIED="1578171734672" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/news" />
+  </component>
+</project>

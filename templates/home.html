@@ -1,0 +1,178 @@
+{% load el_pagination_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	 <link href="https://fonts.googleapis.com/css?family=Heebo|PT+Sans+Caption&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+          crossorigin="anonymous">
+
+    <style>
+
+         a.werr {
+            position: absolute;
+            width: 467px;
+            height: 57px;
+            /* ty */
+            font-family: Heebo;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 18px;
+            line-height: 25px;
+            display: flex;
+            align-items: center;
+            text-indent: 2px;
+            color: #49727B;
+            text-decoration: none;
+        }
+        h1
+         {
+            position: absolute;
+            width: 467px;
+            height: 57px;
+            /* ty */
+            font-family: Heebo;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 18px;
+            line-height: 25px;
+            display: flex;
+            align-items: center;
+            text-indent: 2px;
+            color: #49727B;
+            text-decoration: none;
+        }
+
+        p {
+            font-family: 'PT Sans Caption', sans-serif;
+        }
+
+        .cardd {
+            /* Rectangle 1 */
+            position: relative;
+            width: 482px;
+            height: 121px;
+            left: 22px;
+            top: 69px;
+            animation: 10s slide-up;
+            margin-top: 0%;
+            background: #FBFDF1;
+            border: 1px solid rgba(99, 94, 94, 0.29);
+            box-shadow: 0px 4px 4px rgba(255, 249, 249, 0.4), 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 8px;
+        }
+
+        body {
+            padding: 40px;
+        }
+        /* Animation */
+
+        @keyframes fadeInUp {
+            from {
+                -webkit-transform: translate3d(0, 40px, 0);
+                transform: translate3d(0, 40px, 0);
+            }
+            to {
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+                opacity: 1;
+            }
+        }
+
+        @-webkit-keyframes fadeInUp {
+            from {
+                -webkit-transform: translate3d(0, 40px, 0);
+                transform: translate3d(0, 40px, 0);
+            }
+            to {
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+                opacity: 1;
+            }
+        }
+
+        .animated {
+            animation-duration: 1s;
+            animation-fill-mode: both;
+            -webkit-animation-duration: 1s;
+            -webkit-animation-fill-mode: both;
+        }
+
+        .animatedFadeInUp {
+            opacity: 0;
+        }
+
+        .fadeInUp {
+            opacity: 0;
+            animation-name: fadeInUp;
+            -webkit-animation-name: fadeInUp;
+        }
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+    </style>
+
+</head>
+<body>
+
+
+ <h1>News</h1>
+
+    {% for object in object_list %}
+    <div class="animated animatedFadeInUp fadeInUp">
+        <div class="cardd">
+            <h1><a class="werr" href="{% url 'details' object.slug %}">{{ object.title }}</a></h1>
+            <br>
+            <br>
+            <br>
+            <br>
+            {{ object.contentt|safe|truncatewords:"13" }}
+
+        </div>
+    </div>
+        <br>
+  {% endfor %}
+
+
+ <br>  <br>   <br>  <br>
+<div class="pontainer ">
+    <span class="step-links">
+        {% if object_list.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ object_list.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+        </span>
+
+        {% if object_list.has_next %}
+            <a href="?page={{ object_list.next_page_number }}">next</a>
+            <br>
+            <a href="?page={{ object_list.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
