@@ -16,12 +16,10 @@ def api_detail(request, any):
 
 @api_view(['GET',])
 def api_head(request):
-    try:
-        py = Headline.objects.all().order_by('-id')
-    except Headline.DoesNotExist:
-        return Response(status = status.HTTP_404_NOT_FOUND)
+    py = Headline.objects.all().order_by('-id')
+
     if request.method == "GET":
-        serializer = HeadlineSerializer(py, many=True)
+        serializer = HeadlineTitleSerializer(py, many=True)
         return Response(serializer.data)
 
 

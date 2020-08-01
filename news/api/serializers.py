@@ -6,3 +6,8 @@ class HeadlineSerializer(serializers.ModelSerializer):
         model = Headline
         fields = ['title', 'contentt']
 
+
+class HeadlineTitleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Headline
+        fields = ['title']
