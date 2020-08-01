@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'bootstrap3',
     'el_pagination',
     'rest_framework',
+    'ckeditor',
 
 ]
 

@@ -4,13 +4,13 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth import get_user_model
 from django.utils.text import slugify
-
+from ckeditor.fields import RichTextField
 
 User = get_user_model()
 
 class Headline(models.Model):
     title = models.CharField(max_length=200)
-    contentt = models.TextField(max_length=3000, null=True)
+    contentt = RichTextField(blank=True, null=True)
     slug = models.SlugField(unique=True)
 
     def save(self, *args, **kwargs):

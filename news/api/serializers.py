@@ -5,3 +5,4 @@ class HeadlineSerializer(serializers.ModelSerializer):
     class Meta:
         model = Headline
         fields = ['title', 'contentt']
+
