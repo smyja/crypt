@@ -32,8 +32,8 @@ urlpatterns = [
     path('articlenews/', artnews, name='artnews'),
 
     #REST FRAMEWORRK URL
-    path('api/details/', include('news.api.urls', 'nes_api')),
-    path('api/list/', include('news.api.urls', 'news_api')),
+    path('api/', include('news.api.urls', 'news_api')),
+
 
 
 ]

@@ -4,8 +4,8 @@ from news.api.views import *
 app_name = 'news'
 
 urlpatterns = [
-    path('<slug:any>/', api_detail, name='details'),
-    path('', api_head, name='api_head'),
+    path('details/<slug:any>/', api_detail, name='details'),
+    path('list', api_head, name='api_head'),
 
 
 ]
