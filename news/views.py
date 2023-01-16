@@ -1,11 +1,21 @@
+import django
+import os
+import concurrent.futures
 from news.models import Headline, UserProfile
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+import asyncio
+import aiohttp
 
+import json
+import time
+from bs4 import BeautifulSoup
+import requests
+import textwrap
 
-import django
-import os
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "untt.settings")
 django.setup()
@@ -62,7 +72,7 @@ def scrape(request):
 
     user_p.last_scrape = datetime.now(timezone.utc)
     user_p.save()
-    for i in range(1):
+    for i in range(3):
         r = requests.get("https://dailypost.ng/hot-news/page/{}".format(i))
         soup = BeautifulSoup(r.content, "html.parser")
         mydivs = soup.findAll("span", {"class": "mvp-cd-date left relative"})
@@ -113,3 +123,152 @@ def artnews(request):
     return render(request, "articlenews.html", context)
 
 # Create your views here.
+
+@api_view(['GET'])
+def news(request):
+    """ This endpoint uses Thread Pool Executor to scrape news from dailypost.ng """
+    start_time = time.time()
+    headlines = []
+    articles = []
+    soups=[]
+    with concurrent.futures.ThreadPoolExecutor(max_workers=30) as executor:
+        future_to_url = [executor.submit(requests.get, "https://dailypost.ng/hot-news/page/{}".format(i)) for i in range(6)]
+        for future in concurrent.futures.as_completed(future_to_url):
+            soups.append(BeautifulSoup(future.result().content, "html.parser"))
+    for soup in soups:
+        mydivs = soup.findAll("span", {"class": "mvp-cd-date left relative"})
+        for div in mydivs:
+            mytags = div.findNext('h2')
+            for tag in mytags:
+                headlines.append(tag.strip())
+
+    z = [linkk.get('href', '/') for linkk in soup.find_all("a", {"rel": "bookmark"}) for soup in soups]
+    with concurrent.futures.ThreadPoolExecutor(max_workers=30) as executor:
+        thread_urls=[executor.submit(requests.get, url) for url in z]
+        for thread in concurrent.futures.as_completed(thread_urls):
+            soup = BeautifulSoup(thread.result().content, "html.parser")
+            conteent = soup.find(id="mvp-content-main")
+            article = ''
+            line_size = 80
+            for i in conteent.findAll('p'):
+                w = textwrap.TextWrapper(width=line_size, break_long_words=False, replace_whitespace=False)
+                body = '\n'.join(w.wrap(i.text))
+                article += body + "\n\n"
+            articles.append(article)
+    
+    articles_data=[]
+    id=list(range(1,len(headlines)+1))
+    for i in range(len(headlines)):
+        d={
+            "id":id[i],
+            "title":headlines[i],
+            "content":articles[i]
+        }
+        articles_data.append(d)
+    data={
+        "status":"success",
+        "time":"%s seconds" % (time.time() - start_time),
+        "data":articles_data
+    }
+    #print time taken to run the code
+    print("--- %s seconds ---" % (time.time() - start_time))
+    return Response(data)
+
+#api for news
+@api_view(['GET'])
+def asyncnews(request):
+
+    async def fetch(session, url):
+        async with session.get(url) as response:
+            return await response.text()
+
+    async def main():
+        start_time = time.time()
+        headlines = []
+        articles = []
+        urls = []
+
+        async with aiohttp.ClientSession() as session:
+            tasks = [fetch(session, f"https://dailypost.ng/hot-news/page/{i}") for i in range(6)]
+            htmls = await asyncio.gather(*tasks)
+
+        for html in htmls:
+            soup = BeautifulSoup(html, "html.parser")
+            mydivs = soup.findAll("span", {"class": "mvp-cd-date left relative"})
+            for div in mydivs:
+                mytags = div.findNext('h2')
+                for tag in mytags:
+                    headlines.append(tag.strip())
+            urls.extend([linkk.get('href', '/') for linkk in soup.find_all("a", {"rel": "bookmark"})])
+
+        with concurrent.futures.ThreadPoolExecutor(max_workers=35) as executor:
+            thread_urls=[executor.submit(requests.get, url) for url in urls]
+            for thread in concurrent.futures.as_completed(thread_urls):
+                soup = BeautifulSoup(thread.result().content, "html.parser")
+                conteent = soup.find(id="mvp-content-main")
+                article = ''
+                line_size = 80
+                for i in conteent.findAll('p'):
+                    w = textwrap.TextWrapper(width=line_size, break_long_words=False, replace_whitespace=False)
+                    body = '\n'.join(w.wrap(i.text))
+                    article += body + "\n\n"
+                articles.append(article)
+        articles_data=[]
+        id=list(range(1,len(headlines)+1))
+        for i in range(len(headlines)):
+            d={
+                "id":id[i],
+                "title":headlines[i],
+                "content":articles[i]
+            }
+            articles_data.append(d)
+        data={
+            "status":"success",
+            "time":"%s seconds" % (time.time() - start_time),
+            "data":articles_data
+        }
+        print("--- %s seconds ---" % (time.time() - start_time))
+        return Response(data)
+    return asyncio.run(main())
+
+#api for news withou threadpool executor and async
+@api_view(['GET'])
+def slownews(request):
+    healines=[]
+    articles=[]
+    start_time = time.time()
+    for i in range(6):
+        r = requests.get("https://dailypost.ng/hot-news/page/{}".format(i))
+        soup = BeautifulSoup(r.content, "html.parser")
+        mydivs = soup.findAll("span", {"class": "mvp-cd-date left relative"})
+        for div in mydivs:
+            mytags = div.findNext('h2')
+            for tag in mytags:
+                healines.append(tag.strip())
+    urls = [linkk.get('href', '/') for linkk in soup.find_all("a", {"rel": "bookmark"})]
+    for url in urls:
+        r = requests.get(url)
+        soup = BeautifulSoup(r.content, "html.parser")
+        conteent = soup.find(id="mvp-content-main")
+        article = ''
+        line_size = 80
+        for i in conteent.findAll('p'):
+            w = textwrap.TextWrapper(width=line_size, break_long_words=False, replace_whitespace=False)
+            body = '\n'.join(w.wrap(i.text))
+            article += body + "\n\n"
+        articles.append(article)
+    articles_data=[]
+    id=list(range(1,len(healines)+1))
+    for i in range(len(healines)):
+        d={
+            "id":id[i],
+            "title":healines[i],
+            "content":articles[i]
+        }
+        articles_data.append(d)
+    data={
+        "status":"success",
+        "data":articles_data,
+        "time":"%s seconds" % (time.time() - start_time),
+    }
+    return Response(data)

@@ -19,15 +19,16 @@ from django.contrib import admin
 from django.urls import path, include
 
 from news import views
-from news.views import scrape
-from news.views import home
-from news.views import artnews
+from news.views import scrape, home, artnews, news, asyncnews,slownews
 app_name = 'index'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('scrape/', scrape, name='scrape'),
     path('', home),
+    path('news/', news, name='news'),
+    path('asyncnews/', asyncnews, name='asyncnews'),
+    path('slownews/', asyncnews, name='slownews'),
     path('details/<slug:any>/', views.details, name='details'),
     path('articlenews/', artnews, name='artnews'),
 
